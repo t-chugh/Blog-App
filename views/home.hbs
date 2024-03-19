@@ -1,0 +1,67 @@
+{{!-- views/home.hbs --}}
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .home {
+    display: flex;
+    background-color: #000;
+    color: whitesmoke;
+  }
+  .blogItem {
+    margin: 30px;
+    padding: 5%;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    width: 450px; 
+    height: 430px;
+    color: whitesmoke;
+  } 
+  .viewAllButton {
+    margin-top: 20px;
+  }
+  .posts{
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+ .viewall{
+  margin-left: 65%;
+  text-decoration: none;
+  color: white;
+ }
+ .read{
+  text-decoration: none;
+  color: whitesmoke;
+ }
+</style>
+
+{{> header}}
+<div class="home">
+  <div class="posts">
+  {{#each homePageBlogs}}
+  <div class="blogItem">
+    {{#if imagePath}}
+      <img src="{{imagePath}}" alt="{{title}}" style="max-width: 100%; border-radius: 7px;">
+    {{/if}}
+    {{#if title}}
+      <h3>{{title}}</h3>
+    {{/if}}
+    {{#if content}}
+      <p>{{content}}</p>
+    {{/if}}
+    <a class= "read" href="/blog/single-blog/{{_id}}">Read more</a>
+  </div>
+{{/each}}
+</div>
+   {{> sidebar}}
+</div>
+
+{{#if allBlogs.length}}
+  <a class="viewall" href="/blog/all-blogs" class="viewAllButton">View All Blogs</a>
+{{/if}}
+
+
+
